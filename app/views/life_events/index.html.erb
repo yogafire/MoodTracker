@@ -18,9 +18,9 @@
         <td><%= life_event.day %></td>
         <td align="center"><%= life_event.happiness %></td>
         <td><%= life_event.description %></td>
-        <td><%= link_to 'Show', life_event %></td>
-        <td><%= link_to 'Edit', edit_life_event_path(life_event) %></td>
-        <td><%= link_to 'Destroy', life_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show  ', life_event %></td>
+        <td><%= link_to 'Edit  ', edit_life_event_path(life_event) %></td>
+        <td><%= link_to 'Delete  ', life_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -296,4 +296,4 @@ Highcharts.setOptions(Highcharts.theme);
     });
 });
 </script>
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
