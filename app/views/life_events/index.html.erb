@@ -16,7 +16,7 @@
     <% @life_events.each do |life_event| %>
       <tr>
         <td><%= life_event.day %></td>
-        <td><%= life_event.happiness %></td>
+        <td align="center"><%= life_event.happiness %></td>
         <td><%= life_event.description %></td>
         <td><%= link_to 'Show', life_event %></td>
         <td><%= link_to 'Edit', edit_life_event_path(life_event) %></td>
@@ -36,6 +36,15 @@
  * Dark theme for Highcharts JS
  * @author Torstein Honsi
  */
+
+happiness = [];
+xaxis = [];
+desc_tooltip = {};
+<% @life_events.each do |life_event| %>
+happiness.push(<%= life_event.happiness %>);
+xaxis.push("<%= life_event.day %>");
+desc_tooltip["<%= life_event.day %>"] = "<%= life_event.description %>";
+<% end %>
 
 // Load the fonts
 Highcharts.createElement('link', {
@@ -256,8 +265,7 @@ Highcharts.setOptions(Highcharts.theme);
             x: -20
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            categories: xaxis
         },
         yAxis: {
             title: {
@@ -270,6 +278,9 @@ Highcharts.setOptions(Highcharts.theme);
             }]
         },
         tooltip: {
+            formatter: function() {
+                return desc_tooltip[this.x];
+            },
             valueSuffix: '=)'
         },
         legend: {
@@ -280,7 +291,7 @@ Highcharts.setOptions(Highcharts.theme);
         },
         series: [{
             name: 'Harry',
-            data: [4,5,6,8,1,2,9,10,2,5,4]
+            data: happiness
         }]
     });
 });

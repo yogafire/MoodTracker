@@ -5,7 +5,7 @@ class LifeEventsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @life_events = current_user.life_events
+    @life_events = current_user.life_events.order(:day)
     respond_with(@life_events)
   end
 
