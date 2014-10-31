@@ -1,0 +1,7 @@
+*= require dataTables/jquery.dataTables
+
+.login_inputs {
+  font-size: 26px;
+  padding: 4px;
+  margin: 12px;
+}
